@@ -1,0 +1,108 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pictures_wrapper{
+  width: 1120px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.card{
+  justify-content: flex-start;
+  width: 360px;
+  height: 275px;
+  display: flex;
+  margin-block-end: 20px;
+  align-items: flex-end;
+  margin-left: 7px;
+  margin-right: 6px;
+}
+
+.pictureGallery{
+  width: 360px;
+  height: 275px;
+  border-radius: 20px;
+}
+
+.nameCardImg{
+  width: 360px;
+  font-family: 'Roboto', sans-serif;
+  color: #000000;
+  line-height:20px;
+  display: flex;
+  height: 50px;
+  padding-left: 15px;
+  font-weight: 700;
+  font-size:18px;
+  position: absolute;
+  align-items: center;
+  border-radius: 0px 0px 20px 20px;
+  background-color: #FFFFFFBF;
+  opacity: 5;
+}
+
+.cardContent{
+  position: absolute;
+  width: 360px;
+  height: 145px;
+  border-radius: 0px 0px 20px 20px;
+  background-color: #FFFFFFBF;
+  opacity: 5;
+  visibility:hidden;
+}
+
+.cardInformation{
+  font-family: 'Roboto', sans-serif;
+  color: #000000;
+  line-height:25px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+  margin-bottom: 0;
+}
+
+.nameCard{
+  font-weight: 700;
+  size:18px;
+  padding-top: 8px;
+}
+
+.spancard{
+  display: flex;
+  flex-direction: row;
+}
+
+.titleCard{
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.textCard{
+  font-size: 13px;
+  font-weight: 400;
+  padding-left: 5px;
+}
+
+.card:hover .cardContent{
+  visibility: visible;
+   transition: all .130s ease;
+}
+
+.card:hover .nameCardImg{
+  visibility: hidden;
+}
+
+
+
+
+
+  
+  

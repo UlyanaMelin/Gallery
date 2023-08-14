@@ -1,0 +1,122 @@
+
+.header_wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 35px;
+  width: 1120px;
+  height: 64px;
+  margin-bottom: 35px;
+}
+
+.logo{
+  width: 64px;
+  height: 64px;
+}
+
+.iconsTheme{
+  display: flex;
+  transition: background-color 200ms linear;
+}
+
+.sun{
+  width: 30px;
+  height: 30px;
+  color: green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .logo{
+  display: flex;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  justify-content: center;
+  border-radius: 34px;
+  border-color: #4C4C4C;
+  background-color: black;
+  /* border: 3px; */
+  /* border-width: 2.5px; 
+  color: #4C4C4C; */
+
+/* }  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
