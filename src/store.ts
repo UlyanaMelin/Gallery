@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+// @ts-nocheck
 import axios from 'axios';
-import { makeAutoObservable , runInAction, toJS} from 'mobx';
+import { makeAutoObservable , runInAction} from 'mobx';
 
-const accept = 'application/json'; //шабллон который используется в header
+const accept = 'application/json'; 
 const URL = "https://test-front.framework.team";
-
 
 class Store {
 
@@ -31,7 +30,6 @@ class Store {
     };
  
     getPaintings = async (currentPage) => {
-      console.log("🚀 ~ currentPage:", currentPage)
       try {
         const response = await axios({
           url: `${URL}/paintings`,
@@ -46,7 +44,6 @@ class Store {
         runInAction(() => {
           this.paintings = response.data;
         });
-        // console.log("🚀 ~ paintings:", toJS(this.paintings))
       } catch (error) {
         console.error(error);
       }
@@ -275,91 +272,7 @@ class Store {
       } catch (error) {
         console.error(error);
       }
-    };
-
-    
-  
-    
-    
+    };  
 };
 
 export default new Store();
-
-
-
-/// версии 
-// paintings = [];
-// authors = [];
-// locations = [];
-// arrayPagination = [];
-// paginateTotal = 0;
-
-// constructor() {
-//   makeAutoObservable(this);
-// };
-
-// getPaintingsFilters = async () => {
-//   try {
-//     const response = await axios(`${URL}/paintings`)
-//     .then(data => this.paintings = data.data)
-//     // console.log("🚀 ~ paintings:", toJS(this.paintings))
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-// getPaintings = async (currentPage) => {
-//   console.log("🚀 ~ currentPage:", currentPage)
-//   try {
-//     await axios({
-//       url: `${URL}/paintings`,
-//       params: {
-//         _page:currentPage,
-//         _limit: 3,
-//       } ,
-//       headers: {
-//         accept: accept,
-//       },
-//     })
-//     .then(data => this.paintings = data.data)
-//     // console.log("🚀 ~ paintings:", toJS(this.paintings))
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-// getAuthors = async () => {
-//   try {
-//     const response = await axios(`${URL}/authors`)
-//     .then(data => this.authors = data.data)
-//     // console.log("🚀 ~ paintings:", toJS(this.authors))
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-// getLocations = async () => {
-//   try {
-//     const response = await axios(`${URL}/locations`)
-//     .then(data => this.locations = data.data)
-//     // console.log("🚀 ~ locations:", toJS(this.locations))
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };   
-
-// getPaginationPage = async () => {
-//   const arrayPagination = [];
-//   try {
-//     const response = await axios(`${URL}/paintings`);
-//     const arrayPagination = response.data;
-//     const totalPagination = Math.ceil(arrayPagination.length / 9); 
-//     setPaginateTotal(totalPagination);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-
-
-

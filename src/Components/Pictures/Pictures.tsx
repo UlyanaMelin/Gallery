@@ -1,16 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+// @ts-ignore
 import style from './../Pictures/Pictures.module.css';
-import axios from 'axios';
 import store from '../../store';
 import { observer } from 'mobx-react-lite';
 
 const URL = "https://test-front.framework.team";
 
-const Pictures = observer (({currentIdNames, currentIdAuthors, currentIdLocation, currentIdCreated,  currentPage, setPaginateTotal}) => {
-  const paintings = store.paintings;
-  const authors = store.authors;
-  const locations = store.locations;
-  const accept = 'application/json'; //шабллон который используется в header
+interface PicturesProps {
+  currentIdNames: string,
+  currentIdAuthors: string,
+  currentIdLocation: string,
+  currentIdCreated: string,
+  currentPage: number;
+};
+
+type Paintings = {
+  authorId:number,
+  created:string,
+  id:number,
+  imageUrl:string,
+  locationId:number,
+  name:string,
+}[];
+
+type Authors = {
+  id: number,
+  name: string,
+}[];
+
+type Locations = {
+  id: number,
+  location: string,
+}[];
+
+const Pictures: React.FC<PicturesProps> = observer (({currentIdNames, currentIdAuthors, currentIdLocation, currentIdCreated, currentPage}) => {
+  const paintings : Paintings = [...store.paintings]; 
+  const authors : Authors = [...store.authors]; 
+  const locations : Locations = [...store.locations]; 
   
   useEffect(() =>{
     store.getPaintings(currentPage);
@@ -18,7 +44,7 @@ const Pictures = observer (({currentIdNames, currentIdAuthors, currentIdLocation
 
   useEffect(() => {
     store.getAllFilters(currentIdNames, currentIdAuthors, currentIdLocation, currentIdCreated, currentPage);
-  }, [currentIdNames, currentIdAuthors, currentIdLocation, currentIdCreated]);
+  }, [currentIdNames, currentIdAuthors, currentIdLocation, currentIdCreated, currentPage]);
 
   useEffect(() => {
     store.getAuthors();
@@ -26,7 +52,7 @@ const Pictures = observer (({currentIdNames, currentIdAuthors, currentIdLocation
     store.getPaginationPage();
   }, []);
 
-  const renderAuthors = (authorId) => {
+  const renderAuthors = (authorId: number) => {
     const objectAuthor = authors.find(el => el.id === authorId);
     if (objectAuthor){
       return(
@@ -35,7 +61,7 @@ const Pictures = observer (({currentIdNames, currentIdAuthors, currentIdLocation
       } return null;
   };
 
-   const renderLocation = (locationId) => {
+  const renderLocation = (locationId: number) => {
     const objectLocation = locations.find(el => el.id === locationId);
     if (objectLocation){
       return(
@@ -48,8 +74,8 @@ const Pictures = observer (({currentIdNames, currentIdAuthors, currentIdLocation
       <div className={style.pictures_wrapper}>
         {paintings.map(paintings=>(
           <div key={paintings.id}>
-            <div className={style.card} width={360} height={275}>
-                <img className={style.pictureGallery} src={`${URL}`+ paintings.imageUrl} width={360} height={275}/>
+            <div className={style.card}>
+                <img className={style.pictureGallery} alt='picturesGallery' src={`${URL}`+ paintings.imageUrl} width={360} height={275}/>
                 <div className={style.nameCardImg}>{paintings.name}</div>
               <div className={style.cardContent}>
                 <div className={style.cardInformation}>

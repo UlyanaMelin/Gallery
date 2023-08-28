@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+// @ts-ignore
 import style from './../Pagination/Pagination.module.css';
 import { Pagination } from '@mantine/core';
 import { observer } from 'mobx-react-lite';
 import store from '../../store';
 
+interface PaginationProps {
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
+  paginateTotal: number;
+}
 
-const PaginationGallery = observer(({currentPage, setCurrentPage, paginateTotal}) => {
+const PaginationGallery: React.FC<PaginationProps> = observer(({currentPage, setCurrentPage}) => {
   
     return (
       <div className={style.pagination_wrapper} margin-bottom={30} >
-        <Pagination total={store.paginateTotal} color="dark" size="lg" radius="xs" value={currentPage} onChange={setCurrentPage}  />
+        <Pagination total={store.paginateTotal} color="dark" size="lg" radius="xs" value={currentPage} onChange={setCurrentPage} />
       </div>
     );
   });

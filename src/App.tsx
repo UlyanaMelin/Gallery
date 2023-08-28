@@ -1,19 +1,20 @@
-import React, { useEffect, useState, useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect, FC } from 'react';
 import './App.css';
-import Header from './Components/Header/Header';
+// @ts-ignore
+import Header from './Components/Header/Header.tsx';
 import Filters from './Components/Filters/Filters';
 import Pictures from './Components/Pictures/Pictures';
 import PaginationGallery from './Components/Pagination/Pagination';
 const isDarkTheme = window?.matchMedia('(prefers-color-scheme: dark)').matches;
 const defaultTheme = isDarkTheme ? 'dark' : 'light';
 
-const App = () => {
-  const [currentIdNames, setCurrentIdNames] = useState(0);
-  const [currentIdAuthors, setCurrentIdAuthors] = useState(0); //поиск эллемента массива по айди автора
-  const [currentIdLocation, setCurrentIdLocation] = useState(0);
-  const [currentIdCreated, setCurrentIdCreated] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [paginateTotal, setPaginateTotal] = useState(1);
+const App: FC = () => {
+  const [currentIdNames, setCurrentIdNames] = useState<string>("");
+  const [currentIdAuthors, setCurrentIdAuthors] = useState<string>("");
+  const [currentIdLocation, setCurrentIdLocation] = useState<string>("");
+  const [currentIdCreated, setCurrentIdCreated] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [paginateTotal] = useState(1);
   const [theme, setTheme] = useState(localStorage.getItem('app-theme') || defaultTheme);
   
   const useTheme = () => { 
@@ -29,12 +30,10 @@ const App = () => {
     <div className="App">
       <Header setTheme={setTheme}/>
       <Filters 
-      currentIdNames={currentIdNames}
       setCurrentIdNames={setCurrentIdNames} 
       setCurrentIdAuthors={setCurrentIdAuthors}
       setCurrentIdLocation={setCurrentIdLocation} 
       setCurrentIdCreated={setCurrentIdCreated}
-      currentPage={currentPage}
       />
       <Pictures 
       currentIdNames={currentIdNames}
@@ -42,7 +41,6 @@ const App = () => {
       currentIdLocation={currentIdLocation} 
       currentIdCreated={currentIdCreated}
       currentPage={currentPage} 
-      setPaginateTotal={setPaginateTotal}
       />
       <PaginationGallery 
       currentPage={currentPage} 
